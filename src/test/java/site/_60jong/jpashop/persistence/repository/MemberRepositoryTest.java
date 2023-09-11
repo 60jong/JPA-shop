@@ -1,8 +1,5 @@
 package site._60jong.jpashop.persistence.repository;
 
-import lombok.RequiredArgsConstructor;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +22,7 @@ class MemberRepositoryTest {
     @DisplayName("Member 저장 후 ID 일치 확인")
     void save_member() {
         // given
-        Member member = Member.builder()
-                              .username(MEMBER_A_NAME)
-                              .build();
+        Member member = new Member(MEMBER_A_NAME, null);
 
         // when
         Long saveId = memberRepository.save(member);
@@ -40,9 +35,7 @@ class MemberRepositoryTest {
     @DisplayName("Member 저장 후 ID로 조회해 일치 확인")
     void find_member() {
         // given
-        Member member = Member.builder()
-                .username(MEMBER_A_NAME)
-                .build();
+        Member member = new Member(MEMBER_A_NAME, null);
 
         Long saveId = memberRepository.save(member);
 
