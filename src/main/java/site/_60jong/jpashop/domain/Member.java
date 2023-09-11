@@ -2,10 +2,9 @@ package site._60jong.jpashop.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -16,8 +15,15 @@ public class Member {
     private Long id;
     private String username;
 
-    @Builder
-    public Member(String username) {
+    @Embedded
+    private Address address;
+
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<>();
+
+    // Constructor
+    public Member(String username, Address address) {
         this.username = username;
+        this.address = address;
     }
 }
