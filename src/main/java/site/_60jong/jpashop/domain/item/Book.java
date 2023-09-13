@@ -9,15 +9,15 @@ import javax.persistence.Entity;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@DiscriminatorValue("movie")
+@DiscriminatorValue("book")
 @Entity
-public class Movie extends Item {
-    private String director;
-    private String actor;
+public class Book extends Item {
+    private String author;
+    private String isbn;
 
-    public Movie(String name, int price, int stockQuantity, String director, String actor) {
+    public Book(String name, int price, int stockQuantity, String author, String isbn) {
         super(name, price, stockQuantity);
-        this.director = director;
-        this.actor = actor;
+        this.author = author;
+        this.isbn = isbn;
     }
 }

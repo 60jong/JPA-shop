@@ -32,4 +32,9 @@ public class Order {
         this.member = member;
         status = OrderStatus.ORDER;
     }
+
+    // Method
+    public void cancel() {
+        status = OrderStatus.CANCEL;
+    }
 }

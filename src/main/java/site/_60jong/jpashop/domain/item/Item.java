@@ -31,9 +31,19 @@ public abstract class Item {
     @OneToMany(mappedBy = "item")
     private List<OrderItem> orderItems = new ArrayList<>();
 
+    // Constructor
     public Item(String name, int price, int stockQuantity) {
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
+    }
+
+    // Method
+    public void addItemCategory(ItemCategory itemCategory) {
+        this.itemCategories.add(itemCategory);
+    }
+
+    public void addOrderItem(OrderItem orderItem) {
+        this.orderItems.add(orderItem);
     }
 }
