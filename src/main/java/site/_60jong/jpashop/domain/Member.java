@@ -26,4 +26,9 @@ public class Member {
         this.username = username;
         this.address = address;
     }
+
+    //== 비즈니스 로직 ==//
+    public void addOrder(Order order) {
+        this.orders.add(order);
+    }
 }

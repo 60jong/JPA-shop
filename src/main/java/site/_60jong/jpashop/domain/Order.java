@@ -30,10 +30,11 @@ public class Order {
     private OrderStatus status = OrderStatus.ORDER;
 
     // Constructor
-    public Order(Member member, OrderItem... orderItems) {
+    public Order(Member member, Item... items) {
         this.member = member;
-        Arrays.stream(orderItems)
-                .forEach(this::addOrderItem);
+        member.addOrder(this);
+        Arrays.stream(items)
+                .forEach(this::addItem);
     }
 
     //== 비즈니스 로직 ==//
@@ -41,6 +42,7 @@ public class Order {
         OrderItem orderItem = new OrderItem(this, item);
         this.orderItems.add(orderItem);
     }
+
     public void cancel() {
         status = OrderStatus.CANCEL;
     }
