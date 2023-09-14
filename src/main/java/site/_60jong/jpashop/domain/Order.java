@@ -3,9 +3,11 @@ package site._60jong.jpashop.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import site._60jong.jpashop.domain.item.Item;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -25,15 +27,20 @@ public class Order {
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    private OrderStatus status = OrderStatus.ORDER;
 
     // Constructor
-    public Order(Member member) {
+    public Order(Member member, OrderItem... orderItems) {
         this.member = member;
-        status = OrderStatus.ORDER;
+        Arrays.stream(orderItems)
+                .forEach(this::addOrderItem);
     }
 
-    // Method
+    //== 비즈니스 로직 ==//
+    public void addItem(Item item) {
+        OrderItem orderItem = new OrderItem(this, item);
+        this.orderItems.add(orderItem);
+    }
     public void cancel() {
         status = OrderStatus.CANCEL;
     }

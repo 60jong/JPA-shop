@@ -22,4 +22,10 @@ public class OrderItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
+
+    public OrderItem(Order order, Item item) {
+        this.order = order;
+        this.item = item;
+        item.addOrderItem(this);
+    }
 }

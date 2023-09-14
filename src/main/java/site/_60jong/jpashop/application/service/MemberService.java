@@ -24,6 +24,16 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
+    @Transactional(readOnly = true)
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Member findOne(Long memberId) {
+        return memberRepository.find(memberId);
+    }
+
     private void validateDuplicateMember(Member member) {
         List<Member> membersByName = memberRepository.findByName(member.getUsername());
 

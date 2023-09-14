@@ -10,9 +10,8 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import site._60jong.jpashop.config.annotation.ItemRequestBody;
 import site._60jong.jpashop.domain.item.ItemType;
 import site._60jong.jpashop.presentation.api.dto.ItemRequest;
-
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Map;
 
 @Slf4j
@@ -29,10 +28,12 @@ public class ItemRequestBodyHandlerMethodArgumentResolver implements HandlerMeth
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
-        BufferedReader reader = request.getReader();
-        Map<Object, Object> map = objectMapper.readValue(reader, Map.class);
-        String type = String.valueOf(map.get("type"));
+        Map<Object, Object> bodyMap = getBodyMap(webRequest);
+        return getItemRequest(bodyMap);
+    }
+
+    private ItemRequest getItemRequest(Map<Object, Object> map) {
+        String type = (String) map.get("type");
 
         switch (ItemType.valueOf(type)) {
             case MOVIE:
@@ -42,5 +43,10 @@ public class ItemRequestBodyHandlerMethodArgumentResolver implements HandlerMeth
                 return objectMapper.convertValue(map, ItemRequest.BookRequest.class);
         }
         throw new IllegalArgumentException();
+    }
+
+    private Map<Object, Object> getBodyMap(NativeWebRequest webRequest) throws IOException {
+        HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
+        return objectMapper.readValue(request.getReader(), Map.class);
     }
 }

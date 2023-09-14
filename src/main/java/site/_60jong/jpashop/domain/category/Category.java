@@ -33,8 +33,15 @@ public class Category {
         this.parent = parent;
     }
 
-    // Method
+    //== 비즈니스 로직 ==//
+
     public void addChildCategory(Category category) {
         this.children.add(category);
+    }
+    /**
+     * item 추가
+     */
+    public void addItemCategory(ItemCategory itemCategory) {
+        this.itemCategories.add(itemCategory);
     }
 }

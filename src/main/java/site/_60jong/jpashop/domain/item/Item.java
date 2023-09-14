@@ -4,7 +4,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import site._60jong.jpashop.domain.OrderItem;
+import site._60jong.jpashop.domain.category.Category;
 import site._60jong.jpashop.domain.category.ItemCategory;
+import site._60jong.jpashop.exception.NotEnoughStockException;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -38,8 +40,27 @@ public abstract class Item {
         this.stockQuantity = stockQuantity;
     }
 
-    // Method
-    public void addItemCategory(ItemCategory itemCategory) {
+    //== 비즈니스 로직 ==//
+    /**
+     * stock 증가
+     */
+    public void addStock(int quantity) {
+        this.stockQuantity += quantity;
+    }
+
+    /**
+     * stock 감소
+     */
+    public void removeStoke(int quantity) {
+        int restStock = this.stockQuantity - quantity;
+        if (restStock < 0) {
+            throw new NotEnoughStockException("need more stock");
+        }
+        this.stockQuantity = restStock;
+    }
+
+    public void addCategory(Category category) {
+        ItemCategory itemCategory = new ItemCategory(this, category);
         this.itemCategories.add(itemCategory);
     }
 
