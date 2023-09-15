@@ -9,7 +9,7 @@ import site._60jong.jpashop.persistence.repository.ItemRepository;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class ItemRequestBodyServiceTest {
+class ItemFormBodyServiceTest {
 
     private ItemRepository itemRepository;
     private ItemService itemService;

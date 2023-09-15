@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import site._60jong.jpashop.application.service.ItemService;
 import site._60jong.jpashop.config.annotation.ItemRequestBody;
 import site._60jong.jpashop.domain.item.Item;
-import site._60jong.jpashop.presentation.api.dto.ItemRequest;
+import site._60jong.jpashop.presentation.api.dto.ItemForm;
 import site._60jong.jpashop.presentation.api.dto.ItemSearchResponse;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public class ItemApiController {
     }
 
     @PostMapping("/item")
-    public ResponseEntity<Long> register(@ItemRequestBody ItemRequest dto) {
+    public ResponseEntity<Long> register(@ItemRequestBody ItemForm dto) {
         Long id = itemService.create(dto.toEntity());
         return ResponseEntity.ok(id);
     }

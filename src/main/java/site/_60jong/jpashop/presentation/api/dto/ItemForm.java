@@ -8,8 +8,8 @@ import site._60jong.jpashop.domain.item.Item;
 import site._60jong.jpashop.domain.item.ItemType;
 import site._60jong.jpashop.domain.item.Movie;
 
-@Getter(AccessLevel.PRIVATE) @Setter
-public abstract class ItemRequest {
+@Getter @Setter
+public abstract class ItemForm {
     private String name;
     private int price;
     private int stockQuantity;
@@ -18,7 +18,7 @@ public abstract class ItemRequest {
     public abstract Item toEntity();
 
     @Setter
-    public static class MovieRequest extends ItemRequest {
+    public static class MovieForm extends ItemForm {
         private String director;
         private String actor;
 
@@ -28,8 +28,8 @@ public abstract class ItemRequest {
         }
     }
 
-    @Setter
-    public static class BookRequest extends ItemRequest {
+    @Getter @Setter
+    public static class BookForm extends ItemForm {
         private String author;
         private String isbn;
 

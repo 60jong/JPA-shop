@@ -18,8 +18,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public Long join(MemberDto memberDto) {
-        Member member = memberDto.toEntity();
+    public Long join(Member member) {
         validateDuplicateMember(member);
         return memberRepository.save(member);
     }
@@ -39,20 +38,6 @@ public class MemberService {
 
         if (!membersByName.isEmpty()) {
             throw new IllegalArgumentException("이미 존재하는 회원입니다.");
-        }
-    }
-
-    // DTO
-    @Getter
-    @AllArgsConstructor
-    public static class MemberDto {
-        private String name;
-        private String city;
-        private String street;
-        private String zipcode;
-
-        private Member toEntity() {
-            return new Member(name, new Address(city, street, zipcode));
         }
     }
 }

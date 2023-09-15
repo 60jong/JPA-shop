@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
 @SpringBootTest
-class ItemRequestBodyRepositoryTest {
+class ItemFormBodyRepositoryTest {
 
     @Autowired
     private EntityManager em;

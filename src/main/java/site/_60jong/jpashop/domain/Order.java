@@ -30,20 +30,20 @@ public class Order {
     private OrderStatus status = OrderStatus.ORDER;
 
     // Constructor
-    public Order(Member member, Item... items) {
+    public Order(Member member, List<OrderItem> orderItems) {
         this.member = member;
         member.addOrder(this);
-        Arrays.stream(items)
-                .forEach(this::addItem);
+
+        orderItems.stream()
+                .forEach(orderItem -> {
+                    this.orderItems.add(orderItem);
+                    orderItem.setOrder(this);
+                });
     }
 
     //== 비즈니스 로직 ==//
-    public void addItem(Item item) {
-        OrderItem orderItem = new OrderItem(this, item);
-        this.orderItems.add(orderItem);
-    }
-
     public void cancel() {
         status = OrderStatus.CANCEL;
     }
+
 }
