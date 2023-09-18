@@ -1,5 +1,6 @@
 package site._60jong.jpashop.presentation.controller;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class MemberController {
         List<Member> members = memberService.findMembers();
 
         List<MemberDto> memberDtos = members.stream()
-                .map(MemberDto::new)
+                .map(MemberDto::toDto)
                 .collect(Collectors.toList());
 
         model.addAttribute("memberDtos", memberDtos);
@@ -53,6 +54,7 @@ public class MemberController {
     }
 
     @Getter
+    @AllArgsConstructor
     public static class MemberDto {
         private Long id;
         private String name;
@@ -60,14 +62,9 @@ public class MemberController {
         private String street;
         private String zipcode;
 
-        public MemberDto(Member member) {
-            this.id = member.getId();
-            this.name = member.getUsername();
-
+        public static MemberDto toDto(Member member) {
             Address address = member.getAddress();
-            this.city = address.getCity();
-            this.street = address.getStreet();
-            this.zipcode = address.getZipcode();
+            return new MemberDto(member.getId(), member.getUsername(), address.getCity(), address.getStreet(), address.getZipcode());
         }
     }
 }

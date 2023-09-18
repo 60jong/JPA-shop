@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import site._60jong.jpashop.domain.Order;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
@@ -19,5 +20,10 @@ public class OrderRepository {
 
     public Order find(Long orderId) {
         return em.find(Order.class, orderId);
+    }
+
+    public List<Order> findAll() {
+        return em.createQuery("select o from Order o", Order.class)
+                .getResultList();
     }
 }

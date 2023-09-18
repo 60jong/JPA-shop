@@ -42,4 +42,8 @@ public class OrderService {
         Order order = orderRepository.find(orderId);
         order.cancel();
     }
+
+    public List<Order> findOrders() {
+        return orderRepository.findAll();
+    }
 }

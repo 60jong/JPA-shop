@@ -36,9 +36,9 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:each="item : ${orders}">
+      <tr th:each="item : ${orderDtos}">
         <td th:text="${item.id}"></td>
-        <td th:text="${item.member.name}"></td>
+        <td th:text="${item.membername}"></td>
         <td th:text="${item.orderItems[0].item.name}"></td>
         <td th:text="${item.orderItems[0].orderPrice}"></td>
         <td th:text="${item.orderItems[0].count}"></td>

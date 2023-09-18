@@ -10,6 +10,7 @@ import site._60jong.jpashop.domain.item.Movie;
 
 @Getter @Setter
 public abstract class ItemForm {
+    private Long id;
     private String name;
     private int price;
     private int stockQuantity;

@@ -3,6 +3,7 @@ package site._60jong.jpashop.domain.item;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import site._60jong.jpashop.domain.OrderItem;
 import site._60jong.jpashop.domain.category.Category;
 import site._60jong.jpashop.domain.category.ItemCategory;
@@ -10,7 +11,6 @@ import site._60jong.jpashop.exception.NotEnoughStockException;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -42,6 +42,11 @@ public abstract class Item {
     }
 
     //== 비즈니스 로직 ==//
+    public void modify(String name, int price, int stockQuantity) {
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+    }
     /**
      * stock 증가
      */
