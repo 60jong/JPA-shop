@@ -8,7 +8,7 @@ import site._60jong.jpashop.application.service.ItemService;
 import site._60jong.jpashop.domain.item.Book;
 import site._60jong.jpashop.domain.item.Item;
 import site._60jong.jpashop.domain.item.ItemType;
-import site._60jong.jpashop.presentation.api.dto.ItemForm;
+import site._60jong.jpashop.api.dto.ItemForm;
 
 import java.util.List;
 import java.util.stream.Collectors;

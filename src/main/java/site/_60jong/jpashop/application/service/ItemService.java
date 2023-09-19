@@ -29,10 +29,6 @@ public class ItemService {
         return itemRepository.find(itemId);
     }
 
-    public List<Item> findByName(String name) {
-        return itemRepository.findByName(name);
-    }
-
     public List<Item> findItems() {
         return itemRepository.findAll();
     }

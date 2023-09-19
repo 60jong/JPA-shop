@@ -47,12 +47,4 @@ public class OrderController {
         orderService.order(form.getMemberId(), informs);
         return "redirect:/";
     }
-
-    @GetMapping("/orders")
-    public String list(Model model) {
-        List<OrderDto> orders = orderService.findOrders();
-
-        model.addAttribute("orderDtos", );
-        return "order/orderList";
-    }
 }

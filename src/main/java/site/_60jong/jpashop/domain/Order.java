@@ -26,6 +26,10 @@ public class Order {
     @OneToMany(mappedBy = "order", orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "delivery_id")
+    private Delivery delivery;
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status = OrderStatus.ORDER;
 

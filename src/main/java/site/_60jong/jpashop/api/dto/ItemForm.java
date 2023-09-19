@@ -1,6 +1,5 @@
-package site._60jong.jpashop.presentation.api.dto;
+package site._60jong.jpashop.api.dto;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import site._60jong.jpashop.domain.item.Book;

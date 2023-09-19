@@ -9,7 +9,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import site._60jong.jpashop.config.annotation.ItemRequestBody;
 import site._60jong.jpashop.domain.item.ItemType;
-import site._60jong.jpashop.presentation.api.dto.ItemForm;
+import site._60jong.jpashop.api.dto.ItemForm;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Map;
