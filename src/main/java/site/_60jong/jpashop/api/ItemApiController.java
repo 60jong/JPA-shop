@@ -3,11 +3,11 @@ package site._60jong.jpashop.api;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import site._60jong.jpashop.api.response.Response;
+import site._60jong.jpashop.api.dto.CreateItemRequest;
+import site._60jong.jpashop.api.dto.response.Response;
 import site._60jong.jpashop.application.service.ItemService;
-import site._60jong.jpashop.config.annotation.ItemRequestBody;
+import site._60jong.jpashop.config.annotation.CreateItemRequestBody;
 import site._60jong.jpashop.domain.item.Item;
-import site._60jong.jpashop.api.dto.ItemForm;
 import site._60jong.jpashop.persistence.repository.ItemRepository;
 
 import java.util.List;
@@ -31,8 +31,8 @@ public class ItemApiController {
     }
 
     @PostMapping("/item")
-    public Response<Long> register(@ItemRequestBody ItemForm dto) {
-        Long id = itemService.create(dto.toEntity());
+    public Response<Long> register(@CreateItemRequestBody CreateItemRequest request) {
+        Long id = itemService.create(request.toEntity());
         return new Response<>(id);
     }
 

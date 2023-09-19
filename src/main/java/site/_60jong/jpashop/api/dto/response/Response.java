@@ -1,4 +1,4 @@
-package site._60jong.jpashop.api.response;
+package site._60jong.jpashop.api.dto.response;
 
 import lombok.Getter;
 

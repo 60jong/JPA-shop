@@ -7,22 +7,22 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
-import site._60jong.jpashop.config.annotation.ItemRequestBody;
+import site._60jong.jpashop.api.dto.CreateItemRequest;
+import site._60jong.jpashop.config.annotation.CreateItemRequestBody;
 import site._60jong.jpashop.domain.item.ItemType;
-import site._60jong.jpashop.api.dto.ItemForm;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Map;
 
 @Slf4j
-public class ItemRequestBodyHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
+public class CreateItemRequestBodyHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        boolean isItemDtoAnnotation = parameter.getParameterAnnotation(ItemRequestBody.class) != null;
-        boolean isItemDtoClass = ItemForm.class.equals(parameter.getParameterType());
+        boolean isItemDtoAnnotation = parameter.getParameterAnnotation(CreateItemRequestBody.class) != null;
+        boolean isItemDtoClass = CreateItemRequest.class.equals(parameter.getParameterType());
         return isItemDtoAnnotation && isItemDtoClass;
     }
 
@@ -32,15 +32,15 @@ public class ItemRequestBodyHandlerMethodArgumentResolver implements HandlerMeth
         return getItemRequest(bodyMap);
     }
 
-    private ItemForm getItemRequest(Map<Object, Object> map) {
+    private CreateItemRequest getItemRequest(Map<Object, Object> map) {
         String type = (String) map.get("type");
 
         switch (ItemType.valueOf(type)) {
             case MOVIE:
-                return objectMapper.convertValue(map, ItemForm.MovieForm.class);
+                return objectMapper.convertValue(map, CreateItemRequest.MovieForm.class);
 
             case BOOK:
-                return objectMapper.convertValue(map, ItemForm.BookForm.class);
+                return objectMapper.convertValue(map, CreateItemRequest.BookForm.class);
         }
         throw new IllegalArgumentException();
     }

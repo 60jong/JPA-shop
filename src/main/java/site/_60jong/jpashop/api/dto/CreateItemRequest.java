@@ -8,7 +8,7 @@ import site._60jong.jpashop.domain.item.ItemType;
 import site._60jong.jpashop.domain.item.Movie;
 
 @Getter @Setter
-public abstract class ItemForm {
+public abstract class CreateItemRequest {
     private Long id;
     private String name;
     private int price;
@@ -18,7 +18,7 @@ public abstract class ItemForm {
     public abstract Item toEntity();
 
     @Setter
-    public static class MovieForm extends ItemForm {
+    public static class MovieForm extends CreateItemRequest {
         private String director;
         private String actor;
 
@@ -29,7 +29,7 @@ public abstract class ItemForm {
     }
 
     @Getter @Setter
-    public static class BookForm extends ItemForm {
+    public static class BookForm extends CreateItemRequest {
         private String author;
         private String isbn;
 

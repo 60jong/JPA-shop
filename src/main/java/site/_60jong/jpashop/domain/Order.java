@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import site._60jong.jpashop.domain.item.Item;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +27,8 @@ public class Order {
     @OneToMany(mappedBy = "order", orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 
+    private LocalDateTime orderDateTime;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
@@ -37,6 +40,8 @@ public class Order {
     public Order(Member member, List<OrderItem> orderItems) {
         this.member = member;
         member.addOrder(this);
+
+        this.orderDateTime = LocalDateTime.now();
 
         orderItems.stream()
                 .forEach(orderItem -> {
